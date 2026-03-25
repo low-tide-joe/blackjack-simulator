@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blackjack Simulator</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════ SETUP SCREEN -->
+<div id="screen-setup" class="screen active">
+  <div class="setup-card">
+    <h1 class="logo">♠ Blackjack ♥</h1>
+    <p class="subtitle">6-Deck · S17 · DAS · 3:2</p>
+
+    <div class="setup-section">
+      <label class="setup-label">Mode</label>
+      <div class="toggle-group" id="mode-toggle">
+        <button class="toggle-btn active" data-value="practice">Practice</button>
+        <button class="toggle-btn" data-value="bankroll">Bankroll</button>
+      </div>
+    </div>
+
+    <div class="setup-section">
+      <label class="setup-label">Hands</label>
+      <div class="toggle-group" id="seats-toggle">
+        <button class="toggle-btn active" data-value="1">1</button>
+        <button class="toggle-btn" data-value="2">2</button>
+        <button class="toggle-btn" data-value="3">3</button>
+      </div>
+    </div>
+
+    <button id="btn-start" class="btn-primary">Deal Me In</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ BETTING SCREEN -->
+<div id="screen-betting" class="screen">
+  <div class="betting-card">
+    <h2>Place Your Bets</h2>
+    <div id="bankroll-display" class="bankroll-line"></div>
+    <div id="bet-inputs" class="bet-inputs-grid"></div>
+    <button id="btn-deal" class="btn-primary">Deal</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ TABLE SCREEN -->
+<div id="screen-table" class="screen">
+
+  <!-- Top bar -->
+  <div class="top-bar">
+    <div class="stat-chip" id="stat-bankroll" style="display:none"></div>
+    <div class="stat-chip" id="stat-accuracy"></div>
+    <div class="stat-chip mode-chip" id="stat-mode"></div>
+  </div>
+
+  <!-- Dealer area -->
+  <div class="dealer-area">
+    <div class="area-label">Dealer</div>
+    <div class="cards-row" id="dealer-cards"></div>
+    <div class="hand-total" id="dealer-total"></div>
+  </div>
+
+  <!-- Felt divider -->
+  <div class="felt-divider">
+    <div class="shoe-indicator">
+      <span class="shoe-icon">🃏</span>
+      <span id="shoe-label">6 decks</span>
+    </div>
+  </div>
+
+  <!-- Player seats -->
+  <div class="seats-area" id="seats-area"></div>
+
+  <!-- Action bar -->
+  <div class="action-bar" id="action-bar">
+    <div class="action-buttons" id="action-buttons">
+      <button class="action-btn" id="btn-hit" data-action="h">Hit</button>
+      <button class="action-btn" id="btn-stand" data-action="s">Stand</button>
+      <button class="action-btn" id="btn-double" data-action="d">Double</button>
+      <button class="action-btn" id="btn-split" data-action="p">Split</button>
+    </div>
+    <div class="round-over-buttons" id="round-over-buttons" style="display:none">
+      <button class="round-btn-next" id="btn-next-hand">Next Hand ▶</button>
+      <button class="round-btn-new" id="btn-new-game">New Game</button>
+    </div>
+    <div class="round-summary" id="round-summary" style="display:none"></div>
+    <button class="btn-count" id="btn-count">Show Count</button>
+  </div>
+
+  <!-- Reshuffle banner -->
+  <div class="banner" id="banner-reshuffle" style="display:none">
+    🔀 Shoe reshuffled — count reset
+  </div>
+
+  <!-- Strategy toast -->
+  <div class="strategy-toast" id="strategy-toast"></div>
+
+  <!-- Count popover -->
+  <div class="count-popover" id="count-popover" style="display:none">
+    <div class="count-popover-inner">
+      <button class="count-close" id="count-close">✕</button>
+      <div class="count-title">Hi-Lo Count</div>
+      <div class="count-grid">
+        <div class="count-item">
+          <span class="count-label">Running</span>
+          <span class="count-value" id="count-running">—</span>
+        </div>
+        <div class="count-item">
+          <span class="count-label">True</span>
+          <span class="count-value" id="count-true">—</span>
+        </div>
+        <div class="count-item">
+          <span class="count-label">Decks left</span>
+          <span class="count-value" id="count-decks">—</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+<script src="/static/app.js"></script>
+</body>
+</html>
